@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Rodrigo Martins Moreira</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuração de Cores Customizadas Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Transições suaves para as abas */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Animação de entrada suave para o conteúdo */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex h-screen overflow-hidden">
+
+    <!-- Mobile Header / Overlay -->
+    <div class="md:hidden fixed top-0 w-full bg-white border-b border-slate-200 z-50 flex items-center justify-between p-4 shadow-sm">
+        <div class="font-bold text-lg text-slate-800">Prof. Rodrigo Moreira</div>
+        <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-white w-72 h-full border-r border-slate-200 flex flex-col fixed md:relative z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg md:shadow-none">
+        
+        <!-- Perfil Lateral -->
+        <div class="p-8 flex flex-col items-center border-b border-slate-100 mt-12 md:mt-0">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-brand-50 mb-4 shadow-sm">
+                <!-- Imagem de Placeholder (Substituir pela sua foto real) -->
+                <img src="https://placehold.co/400x400/0d9488/ffffff?text=RM" alt="Foto Rodrigo Moreira" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-xl font-bold text-center text-slate-900">Rodrigo M. Moreira</h1>
+            <p class="text-sm text-center text-brand-600 font-medium mt-1">Professor Adjunto</p>
+            <p class="text-xs text-center text-slate-500 mt-1">Universidade Federal de Rondônia (UNIR)</p>
+        </div>
+
+        <!-- Menu de Navegação -->
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <button onclick="switchTab('sobre')" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition-all text-slate-600 hover:bg-brand-50 hover:text-brand-700 bg-brand-50 text-brand-700" data-target="sobre">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>Sobre Mim</span>
+            </button>
+            <button onclick="switchTab('pesquisa')" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition-all text-slate-600 hover:bg-brand-50 hover:text-brand-700" data-target="pesquisa">
+                <i data-lucide="microscope" class="w-5 h-5"></i>
+                <span>Grupo de Pesquisa</span>
+            </button>
+            <button onclick="switchTab('publicacoes')" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition-all text-slate-600 hover:bg-brand-50 hover:text-brand-700" data-target="publicacoes">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+                <span>Publicações</span>
+            </button>
+        </nav>
+
+        <!-- Redes / Lattes -->
+        <div class="p-4 border-t border-slate-100">
+            <a href="http://lattes.cnpq.br/2306070764744224" target="_blank" class="flex items-center justify-center space-x-2 w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-lg transition-colors text-sm font-medium shadow-sm">
+                <i data-lucide="link" class="w-4 h-4"></i>
+                <span>Currículo Lattes</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative pt-16 md:pt-0">
+        
+        <!-- Header Principal (Logo do Laboratório) -->
+        <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-30">
+            <div>
+                <!-- Espaço vazio ou Título da Seção Atual -->
+                <h2 id="current-section-title" class="text-lg font-semibold text-slate-800 hidden md:block">Perfil Profissional</h2>
+            </div>
+            
+            <!-- Logo SESCLIMA Placeholder -->
+            <div class="flex items-center space-x-3 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded flex items-center justify-center">
+                    <i data-lucide="leaf" class="w-6 h-6"></i>
+                </div>
+                <div class="hidden sm:block">
+                    <p class="text-xs font-bold text-slate-800 tracking-wider">LOGO</p>
+                    <p class="text-xs text-slate-500 font-medium">SESCLIMA</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Container Scrollável para as Abas -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-12 scroll-smooth">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Aba: Sobre Mim -->
+                <section id="sobre" class="tab-content active animate-fade-in">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 md:p-10">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-xl">
+                                <i data-lucide="user" class="w-8 h-8"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-800">Sobre Mim</h2>
+                        </div>
+                        
+                        <div class="space-y-6 text-slate-600 leading-relaxed text-lg">
+                            <p>
+                                Docente Adjunto da Universidade Federal de Rondônia (UNIR) - Campus de Ariquemes, e docente permanente no Programa de Pós-Graduação em Ciências Ambientais. Fomento o ensino público de qualidade e a popularização da ciência através de parcerias com ONGs, instituições estaduais (EMATER-RO, FUNAI-RO, TCE-RO, SEDAM-RO) e universidades internacionais de prestígio.
+                            </p>
+                            <div class="pl-6 border-l-4 border-brand-500 text-slate-700 italic">
+                                "Imaginando um diagrama de Venn, meus interesses se situam na interface entre ciência de dados geoespaciais, sistemas socioecológicos e mudanças climáticas."
+                            </div>
+                            <p>
+                                Minha pesquisa aborda desafios ambientais complexos na interface entre ciência do clima, fragmentação florestal, recursos hídricos e percepções da comunidade. Transformo produtos de sensoriamento remoto multissensor (ópticos e radar) e dados censitários em informações socioespaciais acionáveis.
+                            </p>
+                        </div>
+
+                        <!-- Skills/Tools -->
+                        <div class="mt-10 pt-8 border-t border-slate-100">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Principais Ferramentas & Tecnologias</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 flex items-center"><i data-lucide="globe" class="w-4 h-4 mr-2 text-brand-600"></i> Google Earth Engine</span>
+                                <span class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 flex items-center"><i data-lucide="bar-chart-2" class="w-4 h-4 mr-2 text-blue-600"></i> R</span>
+                                <span class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 flex items-center"><i data-lucide="terminal" class="w-4 h-4 mr-2 text-yellow-600"></i> Python</span>
+                                <span class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 flex items-center"><i data-lucide="map" class="w-4 h-4 mr-2 text-green-600"></i> Sensoriamento Remoto</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Aba: Grupo de Pesquisa -->
+                <section id="pesquisa" class="tab-content animate-fade-in">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 md:p-10">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-xl">
+                                <i data-lucide="microscope" class="w-8 h-8"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-800">Grupo de Pesquisa</h2>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-brand-900 to-slate-900 rounded-2xl p-8 text-white mb-8 relative overflow-hidden shadow-lg">
+                            <div class="absolute top-0 right-0 opacity-10">
+                                <i data-lucide="network" class="w-64 h-64 -mt-10 -mr-10"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-4">Liderança</span>
+                                <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-2">SESCLIMA - UNIR</h3>
+                                <p class="text-brand-100 font-medium text-lg">Grupo de Pesquisa em Sistemas Socioecológicos e Mudanças Climáticas</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6 text-slate-600 leading-relaxed text-lg">
+                            <p>
+                                O <strong>SESCLIMA</strong> atua na investigação das interações dinâmicas entre os sistemas naturais e sociais (Sistemas Socioecológicos) com especial foco na resiliência e adaptação frente aos cenários de mudanças climáticas.
+                            </p>
+                            <p>
+                                Nossas linhas de atuação utilizam abordagens interdisciplinares, integrando <strong>ciência de dados espaciais</strong>, modelagem ambiental e conhecimento ecológico tradicional, buscando compreender as vulnerabilidades e propor soluções baseadas na natureza para a região Amazônica e além.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-5 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-4">
+                                <i data-lucide="droplets" class="w-6 h-6 text-brand-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-800">Recursos Hídricos</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Impactos climáticos e antrópicos na segurança hídrica regional.</p>
+                                </div>
+                            </div>
+                            <div class="p-5 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-4">
+                                <i data-lucide="trees" class="w-6 h-6 text-brand-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-800">Uso do Solo</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Fragmentação florestal, expansão agropecuária e impactos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Aba: Publicações -->
+                <section id="publicacoes" class="tab-content animate-fade-in">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 md:p-10">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-xl">
+                                <i data-lucide="book-open" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-slate-800">Publicações em Destaque</h2>
+                                <p class="text-slate-500 mt-1">Artigos selecionados e revisados por pares.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Publicação 1 -->
+                            <a href="https://doi.org/10.1007/s00704-024-0" target="_blank" class="group block p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-500 hover:shadow-md transition-all relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-brand-500 transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                                <div class="flex justify-between items-start">
+                                    <div class="pr-8">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-600">Artigo Científico</span>
+                                            <span class="text-xs text-slate-400 font-medium">2024</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">
+                                            Trends and correlation between deforestation and precipitation in the Brazilian Amazon Biome.
+                                        </h3>
+                                        <p class="text-sm text-slate-500 mt-2 font-medium">
+                                            Revista: <span class="text-slate-700">THEORETICAL AND APPLIED CLIMATOLOGY</span>
+                                        </p>
+                                        <p class="text-sm text-slate-500 mt-1">
+                                            Autores: Moreira, Rodrigo Martins et al.
+                                        </p>
+                                    </div>
+                                    <div class="text-slate-400 group-hover:text-brand-500 transition-colors">
+                                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-md">
+                                    <i data-lucide="link-2" class="w-4 h-4"></i>
+                                    <span>Acessar DOI</span>
+                                </div>
+                            </a>
+
+                            <!-- Publicação 2 -->
+                            <a href="https://doi.org/10.1038/s41598-024-0" target="_blank" class="group block p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-500 hover:shadow-md transition-all relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-brand-500 transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                                <div class="flex justify-between items-start">
+                                    <div class="pr-8">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-600">Artigo Científico</span>
+                                            <span class="text-xs text-slate-400 font-medium">2024</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">
+                                            Identifying clusters of precipitation for the Brazilian Legal Amazon based on magnitude of trends and its correlation with sea surface temperature.
+                                        </h3>
+                                        <p class="text-sm text-slate-500 mt-2 font-medium">
+                                            Revista: <span class="text-slate-700">Scientific Reports (Nature)</span>
+                                        </p>
+                                        <p class="text-sm text-slate-500 mt-1">
+                                            Autores: Moreira, Rodrigo Martins et al.
+                                        </p>
+                                    </div>
+                                    <div class="text-slate-400 group-hover:text-brand-500 transition-colors">
+                                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-md">
+                                    <i data-lucide="link-2" class="w-4 h-4"></i>
+                                    <span>Acessar DOI</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <p class="text-sm text-slate-500">Para a lista completa de publicações e orientações, acesse o currículo Lattes pelo menu lateral.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer Simples -->
+                <footer class="mt-12 mb-8 text-center text-sm text-slate-400">
+                    <p>&copy; 2026 Prof. Rodrigo Martins Moreira. Todos os direitos reservados.</p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        // Variáveis do menu lateral mobile
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+
+        // Toggle do Menu Mobile
+        function toggleMobileMenu() {
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        mobileBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
+
+        // Lógica de troca de abas
+        function switchTab(tabId) {
+            // Remove a classe active de todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adiciona a classe active no conteúdo selecionado
+            document.getElementById(tabId).classList.add('active');
+
+            // Atualiza os estilos dos botões do menu
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                // Estado Inativo
+                btn.classList.remove('bg-brand-50', 'text-brand-700');
+                btn.classList.add('text-slate-600');
+                
+                // Se for o botão clicado, aplica estado Ativo
+                if(btn.dataset.target === tabId) {
+                    btn.classList.remove('text-slate-600');
+                    btn.classList.add('bg-brand-50', 'text-brand-700');
+                    
+                    // Atualiza título do cabeçalho desktop
+                    const titleText = btn.querySelector('span').innerText;
+                    document.getElementById('current-section-title').innerText = titleText;
+                }
+            });
+
+            // Fecha o menu lateral no mobile após clicar
+            if(window.innerWidth < 768) {
+                toggleMobileMenu();
+            }
+        }
+    </script>
+</body>
+</html>
