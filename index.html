@@ -95,9 +95,9 @@
         
         <!-- Perfil Lateral -->
         <div class="p-8 flex flex-col items-center border-b border-slate-100 mt-12 md:mt-0">
-            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-brand-50 mb-4 shadow-sm">
-                <!-- Imagem de Placeholder (Substituir pela sua foto real) -->
-                <img src="https://placehold.co/400x400/0d9488/ffffff?text=RM" alt="Foto Rodrigo Moreira" class="w-full h-full object-cover">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-brand-50 mb-4 shadow-sm bg-slate-100">
+                <!-- Foto de Perfil Local -->
+                <img src="assets/perfil.jpg" alt="Foto Rodrigo Moreira" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/0d9488/ffffff?text=RM'">
             </div>
             <h1 class="text-xl font-bold text-center text-slate-900">Rodrigo M. Moreira</h1>
             <p class="text-sm text-center text-brand-600 font-medium mt-1">Professor Adjunto</p>
@@ -114,17 +114,25 @@
                 <i data-lucide="microscope" class="w-5 h-5"></i>
                 <span>Grupo de Pesquisa</span>
             </button>
+            <button onclick="switchTab('equipe')" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition-all text-slate-600 hover:bg-brand-50 hover:text-brand-700" data-target="equipe">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Equipe</span>
+            </button>
             <button onclick="switchTab('publicacoes')" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition-all text-slate-600 hover:bg-brand-50 hover:text-brand-700" data-target="publicacoes">
                 <i data-lucide="book-open" class="w-5 h-5"></i>
                 <span>Publicações</span>
             </button>
         </nav>
 
-        <!-- Redes / Lattes -->
-        <div class="p-4 border-t border-slate-100">
-            <a href="http://lattes.cnpq.br/2306070764744224" target="_blank" class="flex items-center justify-center space-x-2 w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-lg transition-colors text-sm font-medium shadow-sm">
+        <!-- Redes / Lattes / ORCID -->
+        <div class="p-4 border-t border-slate-100 flex flex-col space-y-2">
+            <a href="http://lattes.cnpq.br/2306070764744224" target="_blank" class="flex items-center justify-center space-x-2 w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg transition-colors text-sm font-medium shadow-sm">
                 <i data-lucide="link" class="w-4 h-4"></i>
                 <span>Currículo Lattes</span>
+            </a>
+            <a href="https://orcid.org/0000-0001-6794-6026" target="_blank" class="flex items-center justify-center space-x-2 w-full py-2.5 px-4 bg-[#A6CE39] hover:bg-[#95b933] text-white rounded-lg transition-colors text-sm font-medium shadow-sm">
+                <i data-lucide="user-check" class="w-4 h-4"></i>
+                <span>ORCID iD</span>
             </a>
         </div>
     </aside>
@@ -139,13 +147,11 @@
                 <h2 id="current-section-title" class="text-lg font-semibold text-slate-800 hidden md:block">Perfil Profissional</h2>
             </div>
             
-            <!-- Logo SESCLIMA Placeholder -->
-            <div class="flex items-center space-x-3 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
-                <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded flex items-center justify-center">
-                    <i data-lucide="leaf" class="w-6 h-6"></i>
-                </div>
-                <div class="hidden sm:block">
-                    <p class="text-xs font-bold text-slate-800 tracking-wider">LOGO</p>
+            <!-- Logo SESCLIMA -->
+            <div class="flex items-center space-x-3 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm h-14">
+                <img src="assets/logo-lab.png" alt="Logo SESCLIMA" class="h-full object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand-100 text-brand-700 rounded flex items-center justify-center\'><i data-lucide=\'leaf\' class=\'w-6 h-6\'></i></div>'">
+                <div class="hidden sm:block ml-2">
+                    <p class="text-xs font-bold text-slate-800 tracking-wider">LABORATÓRIO</p>
                     <p class="text-xs text-slate-500 font-medium">SESCLIMA</p>
                 </div>
             </div>
@@ -213,10 +219,10 @@
 
                         <div class="space-y-6 text-slate-600 leading-relaxed text-lg">
                             <p>
-                                O <strong>SESCLIMA</strong> atua na investigação das interações dinâmicas entre os sistemas naturais e sociais (Sistemas Socioecológicos) com especial foco na resiliência e adaptação frente aos cenários de mudanças climáticas.
+                                O SESCLIMA atua na investigação das interações dinâmicas entre os sistemas naturais e sociais (Sistemas Socioecológicos) com especial foco na resiliência e adaptação frente aos cenários de mudanças climáticas.
                             </p>
                             <p>
-                                Nossas linhas de atuação utilizam abordagens interdisciplinares, integrando <strong>ciência de dados espaciais</strong>, modelagem ambiental e conhecimento ecológico tradicional, buscando compreender as vulnerabilidades e propor soluções baseadas na natureza para a região Amazônica e além.
+                                Nossas linhas de atuação utilizam abordagens interdisciplinares, integrando ciência de dados espaciais, modelagem ambiental e conhecimento ecológico tradicional, buscando compreender as vulnerabilidades e propor soluções baseadas na natureza para a região Amazônica e além.
                             </p>
                         </div>
                         
@@ -239,6 +245,57 @@
                     </div>
                 </section>
 
+                <!-- Aba: Equipe -->
+                <section id="equipe" class="tab-content animate-fade-in">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 md:p-10">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-xl">
+                                <i data-lucide="users" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-slate-800">Equipe</h2>
+                                <p class="text-slate-500 mt-1">Orientandos de Mestrado e Pesquisadores</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <!-- INÍCIO DO CARTÃO DO ALUNO (ENILSON) -->
+                            <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="h-full w-full bg-slate-200 overflow-hidden relative">
+                                    <img src="assets/enilson.jpg" alt="Enilson Lagass do Carmo" class="w-full h-full object-cover object-top" onerror="this.src='https://placehold.co/600x400/cbd5e1/475569?text=Sem+Foto'">
+                                </div>
+                                <div class="p-5 flex-1 flex flex-col">
+                                    <div class="mb-1 text-xs font-bold text-brand-600 uppercase tracking-wide">Mestrando</div>
+                                    <h3 class="text-lg font-bold text-slate-800 mb-2">Enilson Lagass do Carmo</h3>
+                                    <p class="text-sm text-slate-600 leading-relaxed flex-1">
+                                        Investiga a dinâmica espaço-temporal das pressões antrópicas sobre florestas no Estado de Rondônia através da análise de ecologia da paisagem, visando apoiar a conservação de ecossistemas locais e resiliência climática.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- FIM DO CARTÃO DO ALUNO (ENILSON) -->
+
+                            <!-- INÍCIO DO CARTÃO DO ALUNO (ROMARIO) -->
+                            <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="h-full w-full bg-slate-200 overflow-hidden relative">
+                                    <img src="assets/romario.jpg" alt="Romario Vitorino Ferreira" class="w-full h-full object-cover object-top" onerror="this.src='https://placehold.co/600x400/cbd5e1/475569?text=Sem+Foto'">
+                                </div>
+                                <div class="p-5 flex-1 flex flex-col">
+                                    <div class="mb-1 text-xs font-bold text-brand-600 uppercase tracking-wide">Mestrando</div>
+                                    <h3 class="text-lg font-bold text-slate-800 mb-2">Romario Vitorino Ferreira</h3>
+                                    <p class="text-sm text-slate-600 leading-relaxed flex-1">
+                                        Foca na pesquisa sobre produção agropecuária, processos de desmatamento e os impactos das mudanças climáticas em Rondônia, buscando o desenvolvimento de estratégias em sistemas socioecológicos sustentáveis.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- FIM DO CARTÃO DO ALUNO (ROMARIO) -->
+
+                            <!-- ===> COLE O NOVO CARTÃO DE ALUNO AQUI <=== -->
+
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Aba: Publicações -->
                 <section id="publicacoes" class="tab-content animate-fade-in">
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 md:p-10">
@@ -247,74 +304,186 @@
                                 <i data-lucide="book-open" class="w-8 h-8"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-slate-800">Publicações em Destaque</h2>
-                                <p class="text-slate-500 mt-1">Artigos selecionados e revisados por pares.</p>
+                                <h2 class="text-3xl font-bold text-slate-800">Publicações</h2>
+                                <p class="text-slate-500 mt-1">Artigos Científicos Completos (Organizados por Ano)</p>
                             </div>
                         </div>
 
-                        <div class="space-y-6">
-                            <!-- Publicação 1 -->
-                            <a href="https://doi.org/10.1007/s00704-024-0" target="_blank" class="group block p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-500 hover:shadow-md transition-all relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-1 h-full bg-brand-500 transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
-                                <div class="flex justify-between items-start">
-                                    <div class="pr-8">
-                                        <div class="flex items-center space-x-2 mb-2">
-                                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-600">Artigo Científico</span>
-                                            <span class="text-xs text-slate-400 font-medium">2024</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">
-                                            Trends and correlation between deforestation and precipitation in the Brazilian Amazon Biome.
-                                        </h3>
-                                        <p class="text-sm text-slate-500 mt-2 font-medium">
-                                            Revista: <span class="text-slate-700">THEORETICAL AND APPLIED CLIMATOLOGY</span>
-                                        </p>
-                                        <p class="text-sm text-slate-500 mt-1">
-                                            Autores: Moreira, Rodrigo Martins et al.
-                                        </p>
-                                    </div>
-                                    <div class="text-slate-400 group-hover:text-brand-500 transition-colors">
-                                        <i data-lucide="external-link" class="w-5 h-5"></i>
-                                    </div>
-                                </div>
-                                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-md">
-                                    <i data-lucide="link-2" class="w-4 h-4"></i>
-                                    <span>Acessar DOI</span>
-                                </div>
-                            </a>
+                        <!-- 2026 -->
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-brand-100 pb-2 mb-6 flex items-center">
+                                <i data-lucide="calendar" class="w-6 h-6 mr-2 text-brand-600"></i> 2026
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="https://periodicos.pucminas.br/geografia/article/view/39305" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">ANÁLISE ESPAÇO-TEMPORAL DAS CICATRIZES DE QUEIMADAS USANDO MÉTRICAS DA ECOLOGIA DA PAISAGEM...</h4>
+                                    <p class="text-sm text-slate-600 mt-1">BERSON, P. R.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">CADERNO DE GEOGRAFIA <span class="text-brand-600 font-bold ml-2">Acessar Artigo &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1007/s10980-025-02279-7" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Causal machine learning methods for understanding land use and land cover change</h4>
+                                    <p class="text-sm text-slate-600 mt-1">EIGENBROD, F.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Landscape Ecology <span class="text-brand-600 font-bold ml-2">DOI: 10.1007/s10980-025-02279-7 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1016/j.rsase.2025.101857" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Seasonal patterns and atmospheric modulators of erythemal UV radiation in a sensitive region of the Brazilian Amazon</h4>
+                                    <p class="text-sm text-slate-600 mt-1">ALVES, P. V.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Remote Sensing Applications <span class="text-brand-600 font-bold ml-2">DOI: 10.1016/j.rsase.2025.101857 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1007/s10113-026-02562-6" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Trends and spatial-temporal dynamics in landscape features' relationship with fires show pressure on Indigenous territories in the Amazon</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Regional Environmental Change <span class="text-brand-600 font-bold ml-2">DOI: 10.1007/s10113-026-02562-6 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1038/s41562-026-02497-2" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">US funding cuts offer a rare chance to remodel Global North-Global South research collaboration</h4>
+                                    <p class="text-sm text-slate-600 mt-1">BELL, A. R.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Nature Human Behaviour <span class="text-brand-600 font-bold ml-2">DOI: 10.1038/s41562-026-02497-2 &rarr;</span></p>
+                                </a>
+                            </div>
+                        </div>
 
-                            <!-- Publicação 2 -->
-                            <a href="https://doi.org/10.1038/s41598-024-0" target="_blank" class="group block p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-500 hover:shadow-md transition-all relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-1 h-full bg-brand-500 transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
-                                <div class="flex justify-between items-start">
-                                    <div class="pr-8">
-                                        <div class="flex items-center space-x-2 mb-2">
-                                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-600">Artigo Científico</span>
-                                            <span class="text-xs text-slate-400 font-medium">2024</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">
-                                            Identifying clusters of precipitation for the Brazilian Legal Amazon based on magnitude of trends and its correlation with sea surface temperature.
-                                        </h3>
-                                        <p class="text-sm text-slate-500 mt-2 font-medium">
-                                            Revista: <span class="text-slate-700">Scientific Reports (Nature)</span>
-                                        </p>
-                                        <p class="text-sm text-slate-500 mt-1">
-                                            Autores: Moreira, Rodrigo Martins et al.
-                                        </p>
-                                    </div>
-                                    <div class="text-slate-400 group-hover:text-brand-500 transition-colors">
-                                        <i data-lucide="external-link" class="w-5 h-5"></i>
-                                    </div>
-                                </div>
-                                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-md">
-                                    <i data-lucide="link-2" class="w-4 h-4"></i>
-                                    <span>Acessar DOI</span>
-                                </div>
-                            </a>
+                        <!-- 2025 -->
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-brand-100 pb-2 mb-6 flex items-center">
+                                <i data-lucide="calendar" class="w-6 h-6 mr-2 text-brand-600"></i> 2025
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="https://doi.org/10.14393/rcg2610677399" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">ANÁLISE DA PRECIPITAÇÃO EXTREMA DIÁRIA EM RONDÔNIA: APLICAÇÃO DE ÍNDICES E TENDÊNCIAS NA SÉRIE HISTÓRICA 1980-2020</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Caminhos da Geografia <span class="text-brand-600 font-bold ml-2">DOI: 10.14393/rcg2610677399 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1016/j.cub.2025.02.059" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Conservation: The secondary road to deforestation</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.; SILLS, E. O.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">CURRENT BIOLOGY <span class="text-brand-600 font-bold ml-2">DOI: 10.1016/j.cub.2025.02.059 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.3390/hydrology12120314" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Morphostructural Controls Reflected in Drainage Patterns</h4>
+                                    <p class="text-sm text-slate-600 mt-1">ARCHANJO, R. E. S.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Hydrology <span class="text-brand-600 font-bold ml-2">DOI: 10.3390/hydrology12120314 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.55761/abclima.v37i21.18918" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Precipitation dynamics in forests and deforestation areas during the dry season in the Central-Eastern Amazon</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.; SANTOS, B. C.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Revista Brasileira de Climatologia <span class="text-brand-600 font-bold ml-2">DOI: 10.55761/abclima.v37i21.18918 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1080/10549811.2025.2574022" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">The Role of Protected Areas in the Amazon: Modeling and Quantifying Future Forest Fragmentation</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.; PEREIRA, G. T.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Journal of Sustainable Forestry <span class="text-brand-600 font-bold ml-2">DOI: 10.1080/10549811.2025.2574022 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.5209/aguc.98944" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Using Xgboost models for daily rainfall prediction</h4>
+                                    <p class="text-sm text-slate-600 mt-1">SANCHES, R. G.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Anales De Geografia De La Universidad Complutense <span class="text-brand-600 font-bold ml-2">DOI: 10.5209/aguc.98944 &rarr;</span></p>
+                                </a>
+                            </div>
                         </div>
-                        
-                        <div class="mt-8 text-center">
-                            <p class="text-sm text-slate-500">Para a lista completa de publicações e orientações, acesse o currículo Lattes pelo menu lateral.</p>
+
+                        <!-- 2024 -->
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-brand-100 pb-2 mb-6 flex items-center">
+                                <i data-lucide="calendar" class="w-6 h-6 mr-2 text-brand-600"></i> 2024
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="https://doi.org/10.1002/agg2.20478" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Agronomic management response in maize (L.) production across three agroecological zones of Kenya</h4>
+                                    <p class="text-sm text-slate-600 mt-1">KIPKULEI, H. K.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Agrosystems, Geosciences & Environment <span class="text-brand-600 font-bold ml-2">DOI: 10.1002/agg2.20478 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1038/s41598-024-63583-x" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Identifying clusters of precipitation for the Brazilian Legal Amazon based on magnitude of trends and its correlation with sea surface temperature</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Scientific Reports <span class="text-brand-600 font-bold ml-2">DOI: 10.1038/s41598-024-63583-x &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1007/s10661-024-13080-5" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Influence of precipitation and temperature on burned areas in the agricultural and cattle ranching frontier of the Brazilian Amazon</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.; MARTINS, R. A.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">ENVIRONMENTAL MONITORING AND ASSESSMENT <span class="text-brand-600 font-bold ml-2">DOI: 10.1007/s10661-024-13080-5 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.5752/p.2318-2962.2024v34n78p815" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">INTER-SEASONAL SPATIAL AND TEMPORAL ANALYSIS OF TRENDS AND EXTREME EVENTS IN PRECIPITATION USING GOOGLE EARTH ENGINE</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">CADERNO DE GEOGRAFIA <span class="text-brand-600 font-bold ml-2">DOI: 10.5752/p.2318-2962.2024v34n78p815 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1038/s41598-024-62623-w" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Maize yield prediction and condition monitoring at the sub-county scale in Kenya</h4>
+                                    <p class="text-sm text-slate-600 mt-1">KIPKULEI, H. K.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Scientific Reports <span class="text-brand-600 font-bold ml-2">DOI: 10.1038/s41598-024-62623-w &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.1007/s00704-024-04838-5" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Trends and correlation between deforestation and precipitation in the Brazilian Amazon Biome</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">THEORETICAL AND APPLIED CLIMATOLOGY <span class="text-brand-600 font-bold ml-2">DOI: 10.1007/s00704-024-04838-5 &rarr;</span></p>
+                                </a>
+                            </div>
                         </div>
+
+                        <!-- 2023 -->
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-brand-100 pb-2 mb-6 flex items-center">
+                                <i data-lucide="calendar" class="w-6 h-6 mr-2 text-brand-600"></i> 2023
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="https://doi.org/10.1002/ldr.4945" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">A landscape ecology approach: Modeling forest fragmentation with artificial neural networks and cellular-automata Markov-chain</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Land Degradation & Development <span class="text-brand-600 font-bold ml-2">DOI: 10.1002/ldr.4945 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.11606/eissn.2236-2878.rdg.2023.205190" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Análise espaço-temporal e extrema da erosividade da chuva na região centro-leste do Estado de São Paulo, Brasil</h4>
+                                    <p class="text-sm text-slate-600 mt-1">BOLLELI, T. M.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">REVISTA DO DEPARTAMENTO DE GEOGRAFIA <span class="text-brand-600 font-bold ml-2">DOI: 10.11606/eissn.2236-2878.rdg.2023.205190 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.5752/p.2318-2962.2023v33n75p1148" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">AS CHUVAS DE RELEVO</h4>
+                                    <p class="text-sm text-slate-600 mt-1">SANCHES, R. G.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">CADERNO DE GEOGRAFIA <span class="text-brand-600 font-bold ml-2">DOI: 10.5752/p.2318-2962.2023v33n75p1148 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.3390/cli11020027" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Precipitation Variability for Protected Areas of Primary Forest and Pastureland in Southwestern Amazônia</h4>
+                                    <p class="text-sm text-slate-600 mt-1">MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">Climate <span class="text-brand-600 font-bold ml-2">DOI: 10.3390/cli11020027 &rarr;</span></p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2022 -->
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-brand-100 pb-2 mb-6 flex items-center">
+                                <i data-lucide="calendar" class="w-6 h-6 mr-2 text-brand-600"></i> 2022
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="https://doi.org/10.33448/rsd-v11i4.26396" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Avaliação da qualidade de produtos gerados por levantamento de área utilizando uma aeronave remotamente pilotada</h4>
+                                    <p class="text-sm text-slate-600 mt-1">WEIS, M. G.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">RESEARCH, SOCIETY AND DEVELOPMENT <span class="text-brand-600 font-bold ml-2">DOI: 10.33448/rsd-v11i4.26396 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.31413/nativa.v10i3.13543" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">IDENTIFICAÇÃO DE PROCESSOS EROSIVOS ATRAVÉS DE MODELOS HIDROLÓGICOS E IMAGENS AÉREAS DE ALTA RESOLUÇÃO</h4>
+                                    <p class="text-sm text-slate-600 mt-1">WEIS, M. G.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">NATIVA <span class="text-brand-600 font-bold ml-2">DOI: 10.31413/nativa.v10i3.13543 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.26848/rbgf.v15.6.p3189-3201" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Technology and policy integration: modelling morphometric characterization and land use change using artificial neural networks</h4>
+                                    <p class="text-sm text-slate-600 mt-1">PEREIRA, G. T.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">REVISTA BRASILEIRA DE GEOGRAFIA FÍSICA <span class="text-brand-600 font-bold ml-2">DOI: 10.26848/rbgf.v15.6.p3189-3201 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.21680/2447-3359.2022v8n2id27951" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Análise da correlação entre cobertura vegetal e temperatura de superfície na área urbana do município de Ji-Paraná, RO</h4>
+                                    <p class="text-sm text-slate-600 mt-1">REIS, W. K. B.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">REVISTA DE GEOCIÊNCIAS DO NORDESTE <span class="text-brand-600 font-bold ml-2">DOI: 10.21680/2447-3359.2022v8n2id27951 &rarr;</span></p>
+                                </a>
+                                <a href="https://doi.org/10.21438/rbgas(2022)092219" target="_blank" class="group block p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-white hover:shadow-md transition-all">
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug group-hover:text-brand-700 transition-colors">Influência da área urbana do Município de Coxim, Mato Grosso do Sul, Brasil, sobre a qualidade da água</h4>
+                                    <p class="text-sm text-slate-600 mt-1">ANDRADE, H. S.; MOREIRA, R. M. et al.</p>
+                                    <p class="text-sm text-slate-500 mt-1 font-medium">REV. BRASILEIRA DE GESTÃO AMBIENTAL E SUSTENTABILIDADE <span class="text-brand-600 font-bold ml-2">DOI: 10.21438/rbgas(2022)092219 &rarr;</span></p>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
